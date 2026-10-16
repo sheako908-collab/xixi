@@ -4,14 +4,17 @@
 <key>PayloadContent</key><array><dict>
 <key>PayloadCertificateFileName</key><string>MXHomeCA.crt</string>
 <key>PayloadContent</key><data>MIIDBzCCAe+gAwIBAgIUTgSW23hsb4Y0TdhepbT/ukUIWo8wDQYJKoZIhvcNAQELBQAwEzERMA8GA1UEAwwITVhIb21lQ0EwHhcNMjYxMDE2MDkxNzA3WhcNMjkwMTE4MDkxNzA3WjATMREwDwYDVQQDDAhNWEhvbWVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANEvqYNZWY4iNprFNX/9dBmIqd30Vb9ssZHA4tsnLyTm2GkEpvHatKhQ86g9rppP22VAp4USUaQirsUuU4rv9p/rpG2CMI6uFq8K1lqof5UgdY1TTar7OjmG1o6n44Yp3LXiqSpl92buwk0ctACve6aN2zAmwuz/N8SrMFMfu0yUVxNp6rdZxGlM6rSA47eiWmRDzgZG7WT+le1/IfdR9lkEjNCqWig3DxUkUnYT3HkTuq6vPfWWd7d0+SpcAID/8owhhB6cZgQMKKQT4Kzjn707FXlxGkDjaBclNS/aVRI1fce2X7Ym0M7+fveopufTRnuzzUoWlysOHMeGEa1FpRMCAwEAAaNTMFEwHQYDVR0OBBYEFOn6kp8NGN1msoB1BcHZPXJ6rRWbMB8GA1UdIwQYMBaAFOn6kp8NGN1msoB1BcHZPXJ6rRWbMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBADZsVBS8qKKfCNiXwQHFHYudsA/1wyfOcKm4v+1ZAbFhXXa9SXBIWc7PHxb3IHYG4heISZwvAolyRU8AYai5kBJx/3fpnuOK/35dXwdVF5WR4qZ4jJ6ngNMOa0TCv7Y+pyaThFsRXkgcqc9L3kTD/Rgc95iT6dewCx+nWKGiNjT54Tyav52FAFhcxEHW56luG3EZAqC6XZp+YrQKYL/l9hrpIVbMNn93iaIDPdyTEW7DHnrE2b8lQc5K+SRW+HFuMRTlCDYc8IUguMVZeW0SmvItBL8p8wqusdUiM/IqS1rIfnd+Ftc+YQQINTtQldjqXji6Wb1/JGtzJ1dY7b0thqo=</data>
+<key>PayloadDescription</key><string>MXHomeCA root certificate</string>
 <key>PayloadDisplayName</key><string>MXHomeCA</string>
+<key>PayloadIdentifier</key><string>com.mxhome.ca.cert</string>
 <key>PayloadType</key><string>com.apple.security.root</string>
-<key>PayloadUUID</key><string>CF260B94-BC2E-460F-A13D-7DB42805FDAB</string>
+<key>PayloadUUID</key><string>2C4C151B-7E91-42D7-8E85-3CF04CF1AF9D</string>
 <key>PayloadVersion</key><integer>1</integer>
 </dict></array>
+<key>PayloadDescription</key><string>MXHomeCA root certificate profile</string>
 <key>PayloadDisplayName</key><string>MXHomeCA 证书</string>
 <key>PayloadIdentifier</key><string>com.mxhome.ca.profile</string>
 <key>PayloadType</key><string>Configuration</string>
-<key>PayloadUUID</key><string>FAE202AE-8F0A-465A-8B02-9A9DEEF1BC4B</string>
+<key>PayloadUUID</key><string>541EBED2-C5AC-416A-8447-B91AC2B90FBD</string>
 <key>PayloadVersion</key><integer>1</integer>
 </dict></plist>
