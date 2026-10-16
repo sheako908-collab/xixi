@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
+  <!-- 狐狸吉祥物 · 欢呼姿势（透明底矢量图） -->
+  <defs>
+    <polygon id="starc" points="0,-10 2.4,-3.2 9.5,-3.1 3.8,1.2 5.9,8.1 0,4 -5.9,8.1 -3.8,1.2 -9.5,-3.1 -2.4,-3.2"/>
+  </defs>
+  <!-- 星星装饰 -->
+  <g fill="#FFC857">
+    <use href="#starc" transform="translate(58,120) scale(1.8) rotate(-10)"/>
+    <use href="#starc" transform="translate(422,96) scale(2.1) rotate(12)"/>
+    <use href="#starc" transform="translate(96,330) scale(1.2) rotate(6)"/>
+    <use href="#starc" transform="translate(396,340) scale(1.3) rotate(-10)"/>
+    <use href="#starc" transform="translate(240,44) scale(1.1) rotate(0)"/>
+  </g>
+  <g fill="#FFC857" opacity="0.7">
+    <circle cx="130" cy="70" r="7"/>
+    <circle cx="350" cy="60" r="6"/>
+    <circle cx="440" cy="200" r="7"/>
+    <circle cx="40" cy="220" r="6"/>
+  </g>
+  <!-- 尾巴 -->
+  <path d="M338,392 C400,388 446,338 450,268 C453,208 432,178 410,184 C394,189 390,206 394,226 C400,272 382,330 338,358 Z"
+        fill="#F2661F" stroke="#7C2D0E" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M412,190 C430,186 446,212 444,262 C443,276 441,290 437,302 L426,291 L415,302 L404,290 L394,299 C389,268 389,242 394,228 C391,210 398,194 412,190 Z"
+        fill="#FFF3D8"/>
+  <!-- 腿 -->
+  <rect x="186" y="398" width="54" height="62" rx="27" fill="#F2661F" stroke="#7C2D0E" stroke-width="9"/>
+  <rect x="252" y="398" width="54" height="62" rx="27" fill="#F2661F" stroke="#7C2D0E" stroke-width="9"/>
+  <ellipse cx="213" cy="458" rx="31" ry="17" fill="#FFF3D8" stroke="#7C2D0E" stroke-width="8"/>
+  <ellipse cx="279" cy="458" rx="31" ry="17" fill="#FFF3D8" stroke="#7C2D0E" stroke-width="8"/>
+  <!-- 身体 -->
+  <ellipse cx="240" cy="345" rx="88" ry="92" fill="#F2661F" stroke="#7C2D0E" stroke-width="10"/>
+  <ellipse cx="240" cy="360" rx="56" ry="66" fill="#FFF3D8"/>
+  <!-- 双臂高举欢呼 -->
+  <path d="M168,300 C140,262 122,232 112,196" fill="none" stroke="#7C2D0E" stroke-width="50" stroke-linecap="round"/>
+  <path d="M168,300 C140,262 122,232 112,196" fill="none" stroke="#F2661F" stroke-width="32" stroke-linecap="round"/>
+  <circle cx="110" cy="184" r="30" fill="#FFF3D8" stroke="#7C2D0E" stroke-width="9"/>
+  <path d="M312,300 C340,262 358,232 368,196" fill="none" stroke="#7C2D0E" stroke-width="50" stroke-linecap="round"/>
+  <path d="M312,300 C340,262 358,232 368,196" fill="none" stroke="#F2661F" stroke-width="32" stroke-linecap="round"/>
+  <circle cx="370" cy="184" r="30" fill="#FFF3D8" stroke="#7C2D0E" stroke-width="9"/>
+  <!-- 耳朵 -->
+  <path d="M148,96 L128,22 L222,62 Z" fill="#F2661F" stroke="#7C2D0E" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M154,82 L143,42 L196,64 Z" fill="#F6A9B8"/>
+  <path d="M332,96 L352,22 L258,62 Z" fill="#F2661F" stroke="#7C2D0E" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M326,82 L337,42 L284,64 Z" fill="#F6A9B8"/>
+  <!-- 头 -->
+  <ellipse cx="240" cy="172" rx="118" ry="108" fill="#F2661F" stroke="#7C2D0E" stroke-width="10"/>
+  <!-- 脸颊 -->
+  <circle cx="148" cy="232" r="25" fill="#FFF3D8"/>
+  <circle cx="332" cy="232" r="25" fill="#FFF3D8"/>
+  <!-- 开心的闭眼 -->
+  <path d="M172,176 Q196,152 220,176" fill="none" stroke="#7C2D0E" stroke-width="9" stroke-linecap="round"/>
+  <path d="M260,176 Q284,152 308,176" fill="none" stroke="#7C2D0E" stroke-width="9" stroke-linecap="round"/>
+  <!-- 嘴部：张大欢呼 -->
+  <ellipse cx="240" cy="244" rx="50" ry="40" fill="#FFF3D8"/>
+  <ellipse cx="240" cy="252" rx="20" ry="16" fill="#8A2E0E" stroke="#7C2D0E" stroke-width="5"/>
+  <ellipse cx="240" cy="259" rx="10" ry="7" fill="#F2789F"/>
+</svg>

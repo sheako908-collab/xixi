@@ -1,0 +1,1 @@
+{"dependencies":{"express":"^4.22.3"},"name":"learn-app-v3","private":true,"scripts":{"start":"node server/server.js"},"version":"0.1.0"}

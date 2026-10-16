@@ -1,0 +1,133 @@
+/* 铭希英语新UI样式：暖黄主题 + 狐狸吉祥物 + 童话背景
+ * 作用域全部挂在 .enui 下，不污染数学/家长端样式 */
+.enui {
+  --blue:#238cff; --blue2:#47baff; --green:#26c879; --orange:#ff8a3d;
+  --ink:#12365a; --muted:#647f9b; --warm:#FFF8E1; --warm2:#FFF3C4;
+  min-height: 100dvh;
+  background: var(--warm);
+  color: var(--ink);
+  font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+/* 童话背景层 */
+.enui::before {
+  content:""; position: fixed; inset:0; z-index:0; pointer-events:none;
+  background: var(--enbg, url("../en/assets/bg/home.png")) center/cover no-repeat;
+  opacity:.30;
+}
+.enui::after {
+  content:""; position: fixed; inset:0; z-index:0; pointer-events:none;
+  background: linear-gradient(180deg, rgba(255,248,225,.05), rgba(255,248,225,.25) 60%, rgba(255,248,225,.45));
+}
+.enui > * { position: relative; z-index: 1; }
+
+/* ---------- 首页 ---------- */
+.enui-home { padding: 18px 16px 24px; max-width: 560px; margin: 0 auto; }
+.enui-profile { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.enui-avatar { width:52px; height:52px; border-radius:50%; background:#fff; border:3px solid #fff;
+  box-shadow:0 3px 9px rgba(76,157,203,.2); overflow:hidden; flex-shrink:0; }
+.enui-avatar img { width:100%; height:100%; object-fit:cover; }
+.enui-profile .nm { font-weight:900; font-size:17px; }
+.enui-profile .gr { font-size:11px; color:#4b8fbe; background:#e5f7ff; padding:3px 9px; border-radius:99px; display:inline-block; margin-top:3px; }
+.enui-stars { margin-left:auto; border-radius:99px; background:#fff; padding:8px 12px;
+  box-shadow:0 4px 10px rgba(108,169,207,.13); font-size:14px; font-weight:900; color:#8a6b08; }
+.enui-secttl { font-weight:950; font-size:17px; margin: 14px 0 4px; }
+.enui-progressline { height:10px; background:#f0e2b6; border-radius:99px; overflow:hidden; margin-top:8px; }
+.enui-progressline > span { display:block; height:100%; background:linear-gradient(90deg,#1389ff,#49c8ff); border-radius:99px; transition:width .6s; }
+.enui-track { width:100%; display:flex; align-items:center; gap:12px; text-align:left; color:#fff;
+  border-radius:22px; padding:14px; min-height:104px; margin-top:12px;
+  box-shadow:0 7px 13px rgba(28,138,211,.13); position:relative; overflow:hidden; }
+.enui-track.blue { background:linear-gradient(135deg,#34a8ff,#0877e9); }
+.enui-track.green { background:linear-gradient(135deg,#38dc9c,#16b979); }
+.enui-track img { width:64px; height:64px; object-fit:contain; flex-shrink:0; filter:drop-shadow(0 4px 3px rgba(18,74,103,.25)); }
+.enui-track strong { font-size:18px; display:block; }
+.enui-track small { font-size:11px; opacity:.92; display:block; margin:4px 0 6px; }
+.enui-track b { font-size:26px; }
+.enui-track .arr { margin-left:auto; border-radius:50%; background:rgba(255,255,255,.87); color:#1684dd;
+  width:32px; height:32px; display:grid; place-items:center; font-weight:900; flex-shrink:0; font-size:20px; }
+.enui-foxfoot { display:flex; align-items:flex-end; justify-content:flex-end; margin-top:18px; min-height:110px; position:relative; }
+.enui-foxfoot img { width:120px; max-height:130px; object-fit:contain;
+  filter:drop-shadow(0 7px 4px rgba(39,107,135,.25)); animation:enfloat 3.7s ease-in-out infinite; }
+.enui-speech { position:absolute; left:0; top:14px; background:#fff; border-radius:15px 15px 15px 4px;
+  padding:10px 13px; font-size:13px; font-weight:800; box-shadow:0 5px 12px rgba(71,141,181,.13); max-width:170px; }
+.enui-backlink { display:block; margin:14px auto 0; background:transparent; color:#6e9abb; font-size:13px; font-weight:800; padding:8px; }
+
+/* ---------- 答题页 ---------- */
+.enui-quiz { min-height:100dvh; display:flex; flex-direction:column; padding:12px 14px 16px; max-width:640px; margin:0 auto; }
+.enui-topbar { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.enui-qno { font-size:13px; font-weight:900; color:#5b7a99; }
+.enui-grouptag { font-size:11px; font-weight:800; color:#fff; background:#9db9d4; border-radius:99px; padding:3px 10px; }
+.enui-pagetag { margin-left:auto; background:#2ac982; color:#fff; padding:5px 11px; border-radius:99px; font-size:11px; font-weight:900; white-space:nowrap; }
+.enui-starcnt { border-radius:99px; background:#fff; padding:6px 10px; box-shadow:0 4px 10px rgba(108,169,207,.13);
+  font-size:13px; font-weight:900; color:#8a6b08; }
+.enui-starcnt.bump { animation:enbump .4s; }
+@keyframes enbump { 40% { transform:scale(1.25); } }
+.enui-speak, .enui-exit { border-radius:50%; background:#fff; color:#277bb7; box-shadow:0 3px 8px rgba(76,157,203,.13);
+  width:38px; height:38px; font-size:17px; font-weight:900; display:grid; place-items:center; }
+.enui-dots { display:flex; gap:6px; justify-content:center; margin:4px 0 10px; }
+.enui-dots span { width:8px; height:8px; border-radius:50%; background:#e6d194; }
+.enui-dots span.on { background:#248cff; transform:scale(1.25); }
+.enui-audio { background:#fff; border:1px solid #f3ecd2; border-radius:19px; padding:12px;
+  display:flex; align-items:center; gap:12px; box-shadow:0 5px 14px rgba(185,138,42,.08);
+  font-size:14px; font-weight:800; margin-bottom:12px; }
+.enui-audiobtn { width:52px; height:52px; border-radius:50%; flex-shrink:0;
+  background:linear-gradient(145deg,#4fc6ff,#1286f6); color:#fff; font-size:24px;
+  display:grid; place-items:center; box-shadow:0 5px 10px rgba(35,140,255,.2); }
+.enui-audiobtn.playing { animation:ensound .65s ease-in-out infinite alternate; }
+@keyframes ensound { from{box-shadow:0 0 0 0 rgba(35,140,255,.27)} to{box-shadow:0 0 0 10px rgba(35,140,255,0); transform:scale(1.06)} }
+.enui-stem { font-size:24px; font-weight:900; line-height:1.45; margin:2px 0 12px; }
+.enui-stem .en-word { font-size:36px; }
+/* 选项卡片 */
+.enui-options { display:flex; flex-direction:column; gap:10px; }
+.enui-opt { display:flex; align-items:center; gap:12px; text-align:left; background:#fff;
+  border:2px solid #f3ecd2; border-radius:17px; padding:10px 13px; min-height:68px;
+  box-shadow:0 4px 8px rgba(185,138,42,.05); color:var(--ink); font-weight:900; font-size:19px; width:100%; }
+.enui-opt .em { font-size:34px; }
+.enui-opt .ck { margin-left:auto; width:26px; height:26px; border-radius:50%; display:grid; place-items:center;
+  background:#25c883; color:#fff; opacity:0; transform:scale(.5); transition:.2s; flex-shrink:0; }
+.enui-opt.selected { border-color:#28ce8b; box-shadow:0 0 0 3px rgba(43,209,141,.09), 0 5px 10px rgba(53,185,134,.13); }
+.enui-opt.selected .ck { opacity:1; transform:scale(1); }
+.enui-opt.wrong { border-color:#ff8995; background:#fff7f8; }
+.enui-opt.wrong .ck { opacity:1; background:#ff8995; }
+.enui-opt:disabled { opacity:.92; }
+/* 拼块 */
+.enui-spellans { display:flex; justify-content:center; gap:8px; min-height:64px; margin-bottom:10px; flex-wrap:wrap; }
+.enui-slot { height:60px; min-width:52px; border-radius:16px; background:#fff; border:2px solid #ead9a0;
+  box-shadow:0 5px 12px rgba(185,138,42,.1); display:grid; place-items:center; font-size:30px; font-weight:950; padding:0 8px; }
+.enui-slot.filled { background:#fff8e1; border-color:#58bfff; }
+.enui-blocks { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; background:rgba(255,255,255,.55);
+  border:2px dashed #e8c86a; border-radius:18px; padding:14px 10px; }
+.enui-block { min-width:52px; height:52px; border-radius:13px; padding:0 12px;
+  background:linear-gradient(#4ebeff,#1885f5); color:#fff; font-weight:950; font-size:22px;
+  box-shadow:0 4px 0 #0871d3; }
+.enui-block.used { opacity:.22; transform:scale(.88); box-shadow:none; }
+.enui-hint { display:flex; align-items:center; gap:8px; justify-content:center; font-size:13px; font-weight:800; color:#8a6b08; margin:10px 0; }
+.enui-hint img { width:34px; height:34px; }
+/* 数字键盘（数学不走这里，英语用不到；保留兼容） */
+.enui-feedback { margin-top:12px; }
+/* 跟读 */
+.enui-recite { text-align:center; }
+.enui-playbtn { width:84px; height:84px; border-radius:50%; background:linear-gradient(145deg,#4fc6ff,#1286f6);
+  color:#fff; font-size:34px; display:grid; place-items:center; margin:6px auto 12px; box-shadow:0 6px 14px rgba(35,140,255,.25); }
+.enui-foxline { display:flex; align-items:flex-end; justify-content:center; gap:6px; margin-top:auto; padding-top:14px; }
+.enui-foxline img { width:96px; animation:enfloat 3.7s ease-in-out infinite; }
+.enui-foxline .enui-speech { position:static; max-width:200px; text-align:left; }
+@keyframes enfloat { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-7px) rotate(1deg)} }
+/* 正确答案卡 */
+.enui-rightcard { background:#fff; border-radius:16px; padding:14px; text-align:center; box-shadow:0 4px 12px rgba(185,138,42,.1); }
+.enui-rightcard .lbl { font-size:13px; color:#8a6b08; font-weight:800; }
+.enui-rightcard .ans { font-size:30px; font-weight:950; margin-top:6px; }
+
+/* iPad 优化：更宽，字更大 */
+@media (min-width: 768px) {
+  .enui-home, .enui-quiz { max-width: 720px; }
+  .enui-stem { font-size:28px; }
+  .enui-stem .en-word { font-size:44px; }
+  .enui-opt { font-size:22px; min-height:78px; }
+  .enui-track { min-height:120px; }
+  .enui-foxfoot img { width:150px; max-height:160px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .enui-foxfoot img, .enui-foxline img { animation:none !important; }
+}
