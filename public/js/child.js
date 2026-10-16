@@ -939,15 +939,19 @@
       '<div class="' + P + 'recite">' +
         '<button class="' + P + 'playbtn" id="playBtn">🔊</button>' +
         '<div class="' + P + 'hint"><img src="' + foxImg2 + '" alt="">听一听，跟着读一读吧！</div>' +
-        (canRecord ?
-          '<button class="btn btn-ghost" id="recBtn" style="max-width:280px">🎤 录下我的朗读</button>' +
-          '<div id="recPlay" style="display:none;margin-top:8px">' +
-            '<button class="btn btn-ghost" id="playRecBtn" style="max-width:280px">▶ 回放我的录音</button>' +
-          '</div>' +
-          '<div class="ch-rec-result" id="recResult" style="min-height:24px;font-size:14px;color:var(--sub)"></div>'
-        : '') +
+        '<button class="btn btn-ghost" id="recBtn" style="max-width:280px">🎤 录下我的朗读</button>' +
+        '<div id="recPlay" style="display:none;margin-top:8px">' +
+          '<button class="btn btn-ghost" id="playRecBtn" style="max-width:280px">▶ 回放我的录音</button>' +
+        '</div>' +
+        '<div class="ch-rec-result" id="recResult" style="min-height:24px;font-size:14px;color:var(--sub)"></div>' +
         '<button class="btn btn-main" id="raDone" style="max-width:280px">我读完了</button>' +
       '</div>';
+    /* 包0：录音按钮始终显示。无 mediaDevices（HTTP 下的 iPhone Safari）时点按给说明，不再隐藏 */
+    if (!canRecord) {
+      $('recBtn').addEventListener('click', function () {
+        $('recResult').textContent = '录音需要安全连接：请先按说明在 iPhone 上安装证书，再用 https:// 开头的地址打开。';
+      });
+    }
     function play() {
       /* 句子音频不可信，直接 TTS 英文句子 */
       var enText = (q.values && (q.values.sentence || q.values.word)) || q.answer || '';

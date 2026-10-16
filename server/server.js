@@ -460,6 +460,27 @@ app.get('/api/export', function (req, res) {
 /* ---------- 静态托管 ---------- */
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+/* ---------- 启动：HTTP 始终开启；证书存在则同时开 HTTPS（录音需要） ---------- */
+var HTTPS_PORT = +(process.env.HTTPS_PORT || 8443);
+var TLS_CERT = process.env.TLS_CERT || path.join(__dirname, '..', 'tls', 'server.crt');
+var TLS_KEY = process.env.TLS_KEY || path.join(__dirname, '..', 'tls', 'server.key');
+
 app.listen(PORT, function () {
-  console.log('learn-app-v3 listening on :' + PORT + ' (data: ' + db.DATA_DIR + ')');
+  console.log('learn-app-v3 HTTP listening on :' + PORT + ' (data: ' + db.DATA_DIR + ')');
 });
+
+try {
+  if (fs.existsSync(TLS_CERT) && fs.existsSync(TLS_KEY)) {
+    var https = require('https');
+    https.createServer(
+      { key: fs.readFileSync(TLS_KEY), cert: fs.readFileSync(TLS_CERT) },
+      app
+    ).listen(HTTPS_PORT, function () {
+      console.log('learn-app-v3 HTTPS listening on :' + HTTPS_PORT);
+    });
+  } else {
+    console.log('learn-app-v3 HTTPS disabled (no cert at ' + TLS_CERT + ')');
+  }
+} catch (e) {
+  console.log('learn-app-v3 HTTPS disabled: ' + e.message);
+}
