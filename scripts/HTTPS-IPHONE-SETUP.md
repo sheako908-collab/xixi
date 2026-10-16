@@ -1,8 +1,8 @@
 # iPhone 安装自签证书步骤（包0）
 
 > 前提：服务器上已以 root 执行 `bash /opt/learn-app-v3/scripts/https-selfsigned.sh`，
-> 并重启服务 `systemctl restart learn-app-v3`（日志里看到 `HTTPS listening on :8443`）。
-> 阿里云安全组需放行 8443 端口（8080 只是临时下载证书用，可随时关闭）。
+> 并重启服务 `systemctl restart learn-app-v3`（日志里看到 `HTTPS listening on :8081`）。
+> 阿里云安全组需放行 8081 端口（8080 只是临时下载证书用，可随时关闭）。
 
 ## 步骤
 
@@ -18,7 +18,7 @@
    设置 → 通用 → 关于本机 → 证书信任设置 → 打开 "LearnApp Local CA" 的开关 → 继续。
 
 4. **用 HTTPS 打开学习软件**
-   Safari 访问 `https://8.162.12.71:8443`
+   Safari 访问 `https://8.162.12.71:8081`
    首次可能提示"此连接非私人连接"→ 点"显示详细信息" → "访问此网站"。
    以后都用这个 https 地址，录音按钮才能用。
 
