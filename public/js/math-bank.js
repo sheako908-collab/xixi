@@ -616,6 +616,43 @@ window.MATH_BANK = {
           options: null, answer: String(total), accept: [String(total)], misconceptions: {},
           solution: '一共：' + a + ' + ' + b + ' = ' + total },
         values: { a: a, n: n, b: b } };
+    } },
+  { id: 'math.u3.times.t7', kp_id: 'math.u3.times', type: 'input', difficulty: 1, version: 1,
+    gen: function () {
+      var a = mb_rnd(2, 9), n = mb_rnd(2, 9), ans = a * n;
+      return { stem: a + ' 的 ' + n + ' 倍是（ ）',
+        speak: a + '的' + n + '倍是几',
+        options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
+        solution: a + '×' + n + ' = ' + ans, values: { a: a, n: n } };
+    } },
+  { id: 'math.u3.times.t8', kp_id: 'math.u3.times', type: 'word2', difficulty: 3, version: 1,
+    gen: function () {
+      var items = [['🍎', '苹果', '个', '🍐', '梨'], ['✏️', '铅笔', '支', '📏', '尺子'], ['⭐', '星星贴纸', '张', '🌙', '月亮贴纸']];
+      var it = mb_pick(items);
+      var a = mb_rnd(2, 9), n = mb_rnd(2, 5), b = a * n, diff = b - a;
+      var ch = mb_choice(n, [[diff, '把"多几"当成倍数'], [n + 1, '倍数多算'], [n - 1, '倍数少算']], 4);
+      return {
+        step1: { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[2] + '。' + it[4] + '是' + it[1] + '的几倍？',
+          speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，' + it[4] + '是' + it[1] + '的几倍',
+          options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
+          solution: b + '÷' + a + ' = ' + n },
+        step2: { stem: it[4] + '比' + it[1] + '多（ ）' + it[2] + '。',
+          speak: it[4] + '比' + it[1] + '多几个',
+          options: null, answer: String(diff), accept: [String(diff)], misconceptions: {},
+          solution: b + '−' + a + ' = ' + diff },
+        values: { a: a, b: b, n: n, diff: diff } };
+    } },
+  { id: 'math.u3.times.t9', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 1,
+    gen: function () {
+      var items = [['🕷', '一只蜘蛛有 8 条腿', '只蜘蛛', '条腿', 8], ['📅', '一个星期有 7 天', '个星期', '天', 7],
+                   ['🪑', '一排有 8 个座位', '排', '个座位', 8], ['🚗', '一辆车有 4 个轮子', '辆车', '个轮子', 4],
+                   ['🐞', '一只瓢虫有 6 条腿', '只瓢虫', '条腿', 6]];
+      var it = mb_pick(items);
+      var n = mb_rnd(2, 9), ans = it[4] * n;
+      return { stem: it[0] + ' ' + it[1] + '，' + n + ' ' + it[2] + '一共有（ ）' + it[3] + '。',
+        speak: it[1] + '，' + n + it[2] + '一共有几' + it[3],
+        options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
+        solution: it[4] + '×' + n + ' = ' + ans, values: { per: it[4], n: n } };
     } }
 ]
 ,
@@ -1189,6 +1226,14 @@ window.MATH_BANK = {
           options: null, answer: String(sum), accept: [String(sum)], misconceptions: {},
           solution: a + '+' + b + ' = ' + sum },
         values: { a: a, b: b, n: n } };
+    } },
+  { id: 'math.u5.times_div.t7', kp_id: 'math.u5.times_div', type: 'input', difficulty: 2, version: 1,
+    gen: function () {
+      var a = mb_rnd(2, 9), n = mb_rnd(2, 9), b = a * n;
+      return { stem: b + ' 是 ' + a + ' 的（ ）倍',
+        speak: b + '是' + a + '的几倍',
+        options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+        solution: b + '÷' + a + ' = ' + n, values: { a: a, b: b, n: n } };
     } }
 ]
 ,
