@@ -614,8 +614,8 @@ window.MATH_BANK = {
           speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，谁是1份',
           options: ch.options, answer: it[1], accept: [it[1]], misconceptions: ch.misconceptions,
           solution: it[1] + '少，是 1 份' },
-        step2: { stem: it[4] + '是' + it[1] + '的几倍？',
-          speak: it[4] + '是' + it[1] + '的几倍',
+        step2: { stem: it[1] + ' ' + a + ' ' + it[2] + '，' + it[4] + ' ' + b + ' ' + it[2] + '。' + it[4] + '是' + it[1] + '的几倍？',
+          speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，' + it[4] + '是' + it[1] + '的几倍',
           options: null, answer: String(n), accept: [String(n)], misconceptions: {},
           solution: '想：' + a + '×' + n + ' = ' + b },
         values: { a: a, n: n, b: b } };
@@ -641,8 +641,8 @@ window.MATH_BANK = {
           speak: '红花' + b + '朵，黄花' + a + '朵，红花比黄花多几朵',
           options: ch.options, answer: String(diff), accept: [String(diff)], misconceptions: ch.misconceptions,
           solution: b + '−' + a + ' = ' + diff },
-        step2: { stem: '红花是黄花的几倍？',
-          speak: '红花是黄花的几倍',
+        step2: { stem: '红花 ' + b + ' 朵，黄花 ' + a + ' 朵。红花是黄花的几倍？',
+          speak: '红花' + b + '朵，黄花' + a + '朵，红花是黄花的几倍',
           options: null, answer: String(n), accept: [String(n)], misconceptions: {},
           solution: '想：' + a + '×' + n + ' = ' + b },
         values: { a: a, n: n, b: b, diff: diff } };
@@ -1171,8 +1171,8 @@ window.MATH_BANK = {
           speak: '苹果' + b + '个，梨' + a + '个，苹果是梨的几倍',
           options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
           solution: '想：' + a + '×' + n + ' = ' + b },
-        step2: { stem: '苹果比梨多（ ）个。',
-          speak: '苹果比梨多几个',
+        step2: { stem: '苹果 ' + b + ' 个，梨 ' + a + ' 个。苹果比梨多（ ）个。',
+          speak: '苹果' + b + '个，梨' + a + '个，苹果比梨多几个',
           options: null, answer: String(diff), accept: [String(diff)], misconceptions: {},
           solution: b + '−' + a + ' = ' + diff },
         values: { a: a, n: n, b: b, diff: diff } };
@@ -1198,8 +1198,8 @@ window.MATH_BANK = {
           speak: it[1] + a + it[2] + '，' + it[4] + '是' + it[1] + '的' + n + '倍，谁是1份',
           options: ch.options, answer: it[1], accept: [it[1]], misconceptions: ch.misconceptions,
           solution: it[1] + '是 1 份' },
-        step2: { stem: it[4] + '有几' + it[2] + '？',
-          speak: it[4] + '有几' + it[2],
+        step2: { stem: it[1] + ' ' + a + ' ' + it[2] + '，' + it[4] + '是' + it[1] + '的 ' + n + ' 倍。' + it[4] + '有几' + it[2] + '？',
+          speak: it[1] + a + it[2] + '，' + it[4] + '是' + it[1] + '的' + n + '倍，' + it[4] + '有几' + it[2],
           options: null, answer: String(b), accept: [String(b)], misconceptions: {},
           solution: a + '×' + n + ' = ' + b },
         values: { a: a, n: n, b: b } };

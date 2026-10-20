@@ -65,6 +65,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   padding: calc(8px + env(safe-area-inset-top)) 16px calc(8px + env(safe-area-inset-bottom));
 }
 .ch-topbar {
@@ -427,7 +428,7 @@
 
 /* 倍的认识互动图 */
 .bei-circle { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 360px; margin: 0 auto; }
-.bei-it { font-size: 34px; line-height: 1.15; width: 52px; height: 52px; border: 3px solid transparent; border-radius: 50%; background: #fff8e1; cursor: pointer; padding: 0; }
+.bei-it { font-size: 29px; line-height: 1.15; width: 46px; height: 46px; border: 3px solid transparent; border-radius: 50%; background: #fff8e1; cursor: pointer; padding: 0; }
 .bei-it.circled { border-color: #F28B82; background: #ffe9e7; }
 .bei-count { width: 100%; text-align: center; font-size: 19px; font-weight: 700; color: #48463D; margin-top: 4px; }
 .bei-seg { max-width: 360px; margin: 0 auto; }
