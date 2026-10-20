@@ -325,6 +325,116 @@
     s += '<line x1="' + (4 + f.cols / 2 * cw) + '" y1="0" x2="' + (4 + f.cols / 2 * cw) + '" y2="' + (cw + 12) + '" stroke="#48463D" stroke-width="3" stroke-dasharray="6 4"/>';
     return svgWrap(W, cw + 40, s);
   }
+  /* 倍的认识互动图：圈一圈（点物品按每组 per 个圈起来） */
+  function figBeiCircle(f) {
+    var s = '<div class="bei-circle" data-per="' + f.per + '">', i;
+    for (i = 0; i < f.total; i++) {
+      s += '<button type="button" class="bei-it" data-i="' + i + '">' + f.emoji + '</button>';
+    }
+    s += '<div class="bei-count">已圈 <b>0</b> 圈</div></div>';
+    return s;
+  }
+  /* 倍的认识互动图：线段拼（点“加一段”拼到和大线段一样长） */
+  function figBeiSeg(f) {
+    var unit = Math.max(34, Math.min(60, Math.floor(300 / f.n)));
+    var s = '<div class="bei-seg" data-n="' + f.n + '" data-unit="' + unit + '">';
+    s += '<div class="bei-lab">大线段</div>';
+    s += '<div class="bei-big" style="width:' + (unit * f.n) + 'px"></div>';
+    s += '<div class="bei-lab">我拼的（一段 = 1 份）</div>';
+    s += '<div class="bei-build"></div>';
+    s += '<div class="bei-btns"><button type="button" class="bei-add">＋ 加一段</button>' +
+         '<button type="button" class="bei-del">－ 减一段</button></div>';
+    s += '<div class="bei-count">已拼 <b>0</b> 段</div></div>';
+    return s;
+  }
+  /* 倍的认识展示图：n 组、每组 per 个（求几倍是多少时先看图摆份） */
+  function figBeiGroups(f) {
+    var s = '<div class="bei-groups">', i, j;
+    for (i = 0; i < f.groups; i++) {
+      s += '<span class="bei-grp">';
+      for (j = 0; j < f.per; j++) { s += f.emoji; }
+      s += '</span>';
+    }
+    s += '</div>';
+    return s;
+  }
+  /* 互动图接线：showQuestion 渲染后调用 */
+  function wireBeiFig(f) {
+    var root = window.App.el;
+    if (f.t === 'bei_circle') {
+      var box = root.querySelector('.bei-circle');
+      if (!box) { return; }
+      var per = parseInt(box.getAttribute('data-per'), 10);
+      var items = box.querySelectorAll('.bei-it');
+      var cnt = box.querySelector('.bei-count b');
+      var gseq = 0;
+      function recount() {
+        var groups = {};
+        for (var i = 0; i < items.length; i++) {
+          var g = items[i].getAttribute('data-g');
+          if (g) { groups[g] = 1; }
+        }
+        cnt.textContent = Object.keys(groups).length;
+      }
+      box.addEventListener('click', function (e) {
+        var it = e.target.closest ? e.target.closest('.bei-it') : null;
+        if (!it) { return; }
+        var g = it.getAttribute('data-g');
+        var i, el;
+        if (g) { /* 点已圈的：整圈取消 */
+          for (i = 0; i < items.length; i++) {
+            if (items[i].getAttribute('data-g') === g) {
+              items[i].removeAttribute('data-g');
+              items[i].classList.remove('circled');
+            }
+          }
+        } else { /* 点没圈的：把它和后面凑满 per 个没圈的圈成一圈 */
+          gseq++;
+          var need = per;
+          for (i = 0; i < items.length && need > 0; i++) {
+            el = items[i];
+            if (!el.getAttribute('data-g')) {
+              el.setAttribute('data-g', 'g' + gseq);
+              el.classList.add('circled');
+              need--;
+            }
+          }
+        }
+        recount();
+      });
+    } else if (f.t === 'bei_seg') {
+      var seg = root.querySelector('.bei-seg');
+      if (!seg) { return; }
+      var n = parseInt(seg.getAttribute('data-n'), 10);
+      var unit = parseInt(seg.getAttribute('data-unit'), 10);
+      var build = seg.querySelector('.bei-build');
+      var cnt2 = seg.querySelector('.bei-count');
+      var count = 0;
+      function refresh() {
+        build.innerHTML = '';
+        for (var i = 0; i < count; i++) {
+          var d = document.createElement('div');
+          d.className = 'bei-piece';
+          d.style.width = unit + 'px';
+          build.appendChild(d);
+        }
+        if (count === n) {
+          build.classList.add('match');
+          cnt2.innerHTML = '已拼 <b>' + count + '</b> 段，一样长啦！🎉';
+        } else {
+          build.classList.remove('match');
+          cnt2.innerHTML = '已拼 <b>' + count + '</b> 段';
+        }
+      }
+      seg.querySelector('.bei-add').addEventListener('click', function () {
+        if (count < n + 2) { count++; refresh(); }
+      });
+      seg.querySelector('.bei-del').addEventListener('click', function () {
+        if (count > 0) { count--; refresh(); }
+      });
+      refresh();
+    }
+  }
   function figHtml(f) {
     try {
       if (f.t === 'vert') { return figVert(f); }
@@ -334,6 +444,9 @@
       if (f.t === 'shift') { return figShift(f); }
       if (f.t === 'sym') { return figSym(f); }
       if (f.t === 'mirror') { return figMirror(f); }
+      if (f.t === 'bei_circle') { return figBeiCircle(f); }
+      if (f.t === 'bei_seg') { return figBeiSeg(f); }
+      if (f.t === 'bei_groups') { return figBeiGroups(f); }
     } catch (e) {}
     return '';
   }
@@ -715,6 +828,9 @@
     else if (q.type === 'read_aloud') { renderReadAloud(q); }
     else if (q.options && q.options.length) { renderChoice(q); }
     else { renderInput(q); }
+
+    /* 倍的认识互动图接线（圈一圈/线段拼） */
+    if (q.fig && (q.fig.t === 'bei_circle' || q.fig.t === 'bei_seg')) { wireBeiFig(q.fig); }
 
     /* 自动朗读题干（iOS 需之前点"开始"时已预热，否则会被静默拦截） */
     (function (tk, qq) {

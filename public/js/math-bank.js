@@ -559,100 +559,93 @@ window.MATH_BANK = {
     } }
 ],
 'math.u3.times': [
-  { id: 'math.u3.times.t1', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 1,
+  { id: 'math.u3.times.t1', kp_id: 'math.u3.times', type: 'input', difficulty: 1, version: 2,
     gen: function () {
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), ans = a * n;
-      return { stem: '🔴 红气球 ' + a + ' 个，黄气球是红气球的 ' + n + ' 倍。黄气球有（ ）个。',
-        speak: '红气球' + a + '个，黄气球是红气球的' + n + '倍，黄气球有几个',
-        options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
-        solution: a + '×' + n + ' = ' + ans, values: { a: a, n: n } };
+      var items = [['🍎', '苹果'], ['🍐', '梨'], ['🍌', '香蕉'], ['🍓', '草莓'], ['🍬', '糖']];
+      var it = mb_pick(items);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
+      var title = '点一点：每 ' + a + ' 个圈一圈。一共圈了几圈？';
+      return { stem: it[1] + '有 ' + b + ' 个。每 ' + a + ' 个圈一圈，圈了几圈？',
+        speak: it[1] + '有' + b + '个，每' + a + '个圈一圈，圈了几圈',
+        options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, n: n, b: b, ask: 'quan' },
+        fig: { t: 'bei_circle', emoji: it[0], total: b, per: a, title: title } };
     } },
-  { id: 'math.u3.times.t2', kp_id: 'math.u3.times', type: 'choice', difficulty: 2, version: 1,
+  { id: 'math.u3.times.t2', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 2,
     gen: function () {
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), ans = a * n;
-      var ch = mb_choice(ans, [[ans + a, '多算了一份（倍数多算）'], [a + n, '加乘混淆（倍数用加法）']], 3);
-      return { stem: '🐵 猴子 ' + a + ' 只，小兔是猴子的 ' + n + ' 倍。小兔有几只？',
-        speak: '猴子' + a + '只，小兔是猴子的' + n + '倍，小兔有几只',
-        options: ch.options, answer: String(ans), accept: [String(ans)], misconceptions: ch.misconceptions,
-        solution: a + '×' + n + ' = ' + ans, values: { a: a, n: n } };
+      var items = [['🍎', '苹果'], ['⭐', '星星'], ['🧸', '玩具熊'], ['🍬', '糖'], ['📚', '书']];
+      var it = mb_pick(items);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
+      var title = '先圈一圈：' + b + ' 是 ' + a + ' 的几倍？';
+      return { stem: it[1] + '有 ' + b + ' 个，' + a + ' 个是 1 份。' + b + ' 是 ' + a + ' 的几倍？',
+        speak: it[1] + '有' + b + '个，' + a + '个是1份，' + b + '是' + a + '的几倍',
+        options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, n: n, b: b, ask: 'bei' },
+        fig: { t: 'bei_circle', emoji: it[0], total: b, per: a, title: title } };
     } },
-  { id: 'math.u3.times.t3', kp_id: 'math.u3.times', type: 'choice', difficulty: 3, version: 1,
+  { id: 'math.u3.times.t3', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 2,
     gen: function () {
-      var a = mb_rnd(2, 5), n = mb_rnd(2, 4), b = a * n;
-      var ch = mb_choice(n, [[n + 1, '倍数多算'], [n - 1, '倍数少算'], [b - a, '用减法求倍数']], 4);
-      return { stem: '🔴 红花 ' + a + ' 朵，黄花 ' + b + ' 朵。黄花是红花的几倍？',
-        speak: '红花' + a + '朵，黄花' + b + '朵，黄花是红花的几倍',
-        options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
-        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
+      var n = mb_rnd(2, 6);
+      var title = '点“加一段”，拼到和大线段一样长。你拼了几段？';
+      return { stem: '小线段是 1 份，拼几段和大线段一样长？',
+        speak: '小线段是1份，点加一段，拼到和大线段一样长，你拼了几段',
+        options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+        solution: '小线段拼了 ' + n + ' 段', values: { n: n, ask: 'duan' },
+        fig: { t: 'bei_seg', n: n, title: title } };
     } },
-  { id: 'math.u3.times.t4', kp_id: 'math.u3.times', type: 'choice', difficulty: 2, version: 1,
+  { id: 'math.u3.times.t4', kp_id: 'math.u3.times', type: 'input', difficulty: 3, version: 2,
     gen: function () {
-      var n = mb_rnd(2, 4), k = mb_rnd(2, 3), m = n * k;
-      var ch = mb_choice(k, [[k + 1, '倍数多算'], [k - 1, '倍数少算']], 3);
-      return { stem: '🐶 小狗' + n + '只：' + mb_repeat('🐶', n) + '\n🐱 小猫' + m + '只：' + mb_repeat('🐱', m) + '\n小猫是小狗的几倍？',
-        speak: '小狗' + n + '只，小猫' + m + '只，小猫是小狗的几倍',
-        options: ch.options, answer: String(k), accept: [String(k)], misconceptions: ch.misconceptions,
-        solution: '想：' + n + '×' + k + ' = ' + m, values: { n: n, k: k, m: m } };
+      var n = mb_rnd(2, 6);
+      var title = '拼一拼：大线段是小线段的几倍？';
+      return { stem: '小线段是 1 份。大线段是小线段的几倍？',
+        speak: '小线段是1份，拼一拼，大线段是小线段的几倍',
+        options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+        solution: '拼了 ' + n + ' 段，所以是 ' + n + ' 倍', values: { n: n, ask: 'bei' },
+        fig: { t: 'bei_seg', n: n, title: title } };
     } },
-  { id: 'math.u3.times.t5', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 1,
+  { id: 'math.u3.times.t5', kp_id: 'math.u3.times', type: 'word2', difficulty: 3, version: 2,
     gen: function () {
-      var a = mb_rnd(2, 5), n = mb_rnd(2, 4), ans = a * n;
-      return { stem: '🐰 白兔有 ' + a + ' 只，灰兔是白兔的 ' + n + ' 倍。灰兔有（ ）只。',
-        speak: '白兔有' + a + '只，灰兔是白兔的' + n + '倍，灰兔有几只',
-        options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
-        solution: a + '×' + n + ' = ' + ans, values: { a: a, n: n } };
-    } },
-  { id: 'math.u3.times.t6', kp_id: 'math.u3.times', type: 'word2', difficulty: 3, version: 1,
-    gen: function () {
-      var a = mb_rnd(2, 4), n = mb_rnd(2, 3), b = a * n, total = a + b;
-      var ch = mb_choice(b, [[b + a, '多算了一份'], [a + n, '加乘混淆（倍数用加法）']], 3);
+      var items = [['🐶', '小狗', '只', '🐱', '小猫'], ['🍎', '苹果', '个', '🍐', '梨'], ['🌷', '红花', '朵', '🌻', '黄花']];
+      var it = mb_pick(items);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), b = a * n;
+      var ch = mb_choice(it[1], [[it[4], '把大数当成 1 份']], 2);
       return {
-        step1: { stem: '🧱 红积木 ' + a + ' 块，蓝积木是红积木的 ' + n + ' 倍。蓝积木有几块？',
-          speak: '红积木' + a + '块，蓝积木是红积木的' + n + '倍，蓝积木有几块',
-          options: ch.options, answer: String(b), accept: [String(b)], misconceptions: ch.misconceptions,
-          solution: '蓝积木：' + a + '×' + n + ' = ' + b },
-        step2: { stem: '红积木和蓝积木一共有几块？',
-          speak: '红积木和蓝积木一共有几块',
-          options: null, answer: String(total), accept: [String(total)], misconceptions: {},
-          solution: '一共：' + a + ' + ' + b + ' = ' + total },
+        step1: { stem: it[0] + ' ' + it[1] + ' ' + a + ' ' + it[2] + '，' + it[4] + ' ' + b + ' ' + it[2] + '。谁是 1 份？',
+          speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，谁是1份',
+          options: ch.options, answer: it[1], accept: [it[1]], misconceptions: ch.misconceptions,
+          solution: it[1] + '少，是 1 份' },
+        step2: { stem: it[4] + '是' + it[1] + '的几倍？',
+          speak: it[4] + '是' + it[1] + '的几倍',
+          options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+          solution: '想：' + a + '×' + n + ' = ' + b },
         values: { a: a, n: n, b: b } };
     } },
-  { id: 'math.u3.times.t7', kp_id: 'math.u3.times', type: 'input', difficulty: 1, version: 1,
+  { id: 'math.u3.times.t6', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 2,
     gen: function () {
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), ans = a * n;
-      return { stem: a + ' 的 ' + n + ' 倍是（ ）',
-        speak: a + '的' + n + '倍是几',
-        options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
-        solution: a + '×' + n + ' = ' + ans, values: { a: a, n: n } };
-    } },
-  { id: 'math.u3.times.t8', kp_id: 'math.u3.times', type: 'word2', difficulty: 3, version: 1,
-    gen: function () {
-      var items = [['🍎', '苹果', '个', '🍐', '梨'], ['✏️', '铅笔', '支', '📏', '尺子'], ['⭐', '星星贴纸', '张', '🌙', '月亮贴纸']];
+      var items = [['🌷', '红花', '🌻', '黄花', '朵'], ['🔴', '红气球', '🟡', '黄气球', '个'], ['🐰', '白兔', '🦊', '狐狸', '只']];
       var it = mb_pick(items);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
+      var title = it[2] + it[3] + '是' + it[1] + '的 ' + n + ' 倍，有几' + it[4] + '？';
+      return { stem: it[1] + ' ' + a + ' ' + it[4] + '，' + it[3] + '是' + it[1] + '的 ' + n + ' 倍。' + it[3] + '有几' + it[4] + '？',
+        speak: it[1] + a + it[4] + '，' + it[3] + '是' + it[1] + '的' + n + '倍，' + it[3] + '有几' + it[4],
+        options: null, answer: String(b), accept: [String(b)], misconceptions: {},
+        solution: a + '×' + n + ' = ' + b, values: { a: a, n: n, b: b },
+        fig: { t: 'bei_groups', emoji: it[0], per: a, groups: n, title: title } };
+    } },
+  { id: 'math.u3.times.t7', kp_id: 'math.u3.times', type: 'word2', difficulty: 3, version: 2,
+    gen: function () {
       var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n, diff = b - a;
-      var ch = mb_choice(n, [[diff, '把"多几"当成倍数'], [n + 1, '倍数多算'], [n - 1, '倍数少算']], 4);
+      var ch = mb_choice(diff, [[n, '把倍数当成多几'], [b, '没有减去 1 份']], 3);
       return {
-        step1: { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[2] + '。' + it[4] + '是' + it[1] + '的几倍？',
-          speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，' + it[4] + '是' + it[1] + '的几倍',
-          options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
-          solution: '想：' + a + '×' + n + ' = ' + b },
-        step2: { stem: it[4] + '比' + it[1] + '多（ ）' + it[2] + '。',
-          speak: it[4] + '比' + it[1] + '多几个',
-          options: null, answer: String(diff), accept: [String(diff)], misconceptions: {},
+        step1: { stem: '🌷 红花 ' + b + ' 朵，黄花 ' + a + ' 朵。红花比黄花多几朵？',
+          speak: '红花' + b + '朵，黄花' + a + '朵，红花比黄花多几朵',
+          options: ch.options, answer: String(diff), accept: [String(diff)], misconceptions: ch.misconceptions,
           solution: b + '−' + a + ' = ' + diff },
-        values: { a: a, b: b, n: n, diff: diff } };
-    } },
-  { id: 'math.u3.times.t9', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 1,
-    gen: function () {
-      var items = [['🕷', '一只蜘蛛有 8 条腿', '只蜘蛛', '条腿', 8], ['📅', '一个星期有 7 天', '个星期', '天', 7],
-                   ['🪑', '一排有 8 个座位', '排', '个座位', 8], ['🚗', '一辆车有 4 个轮子', '辆车', '个轮子', 4],
-                   ['🐞', '一只瓢虫有 6 条腿', '只瓢虫', '条腿', 6]];
-      var it = mb_pick(items);
-      var n = mb_rnd(2, Math.floor(36 / it[4])), ans = it[4] * n;
-      return { stem: it[0] + ' ' + it[1] + '，' + n + ' ' + it[2] + '一共有（ ）' + it[3] + '。',
-        speak: it[1] + '，' + n + it[2] + '一共有几' + it[3],
-        options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
-        solution: it[4] + '×' + n + ' = ' + ans, values: { per: it[4], n: n } };
+        step2: { stem: '红花是黄花的几倍？',
+          speak: '红花是黄花的几倍',
+          options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+          solution: '想：' + a + '×' + n + ' = ' + b },
+        values: { a: a, n: n, b: b, diff: diff } };
     } }
 ]
 ,
@@ -1157,74 +1150,83 @@ window.MATH_BANK = {
     } }
 ],
 'math.u5.times_div': [
-  { id: 'math.u5.times_div.t1', kp_id: 'math.u5.times_div', type: 'choice', difficulty: 2, version: 1,
+  { id: 'math.u5.times_div.t1', kp_id: 'math.u5.times_div', type: 'input', difficulty: 2, version: 2,
     gen: function () {
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), b = a * n;
-      var ch = mb_choice(n, [[n + 1, '倍数多算'], [n - 1, '倍数少算'], [b - a, '用减法求倍数']], 4);
-      return { stem: '🐱 小猫 ' + a + ' 只，大猫 ' + b + ' 只。大猫是小猫的几倍？',
-        speak: '小猫' + a + '只，大猫' + b + '只，大猫是小猫的几倍',
-        options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
-        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
-    } },
-  { id: 'math.u5.times_div.t2', kp_id: 'math.u5.times_div', type: 'input', difficulty: 3, version: 1,
-    gen: function () {
-      var a = mb_rnd(2, 7), n = mb_rnd(2, 5), ans = a * n;
-      return { stem: '🌷 红花 ' + a + ' 朵，黄花是红花的 ' + n + ' 倍。黄花有（ ）朵。',
-        speak: '红花' + a + '朵，黄花是红花的' + n + '倍，黄花有几朵',
-        options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
-        solution: a + '×' + n + ' = ' + ans, values: { a: a, n: n } };
-    } },
-  { id: 'math.u5.times_div.t4', kp_id: 'math.u5.times_div', type: 'input', difficulty: 2, version: 1,
-    gen: function () {
-      var items = [['🐱', '小猫', '只', '🐶', '小狗', '只'], ['🐰', '小兔', '只', '🐥', '小鸡', '只'],
-                   ['🍎', '苹果', '个', '🍐', '梨', '个'], ['✏️', '铅笔', '支', '📏', '尺子', '把']];
+      var items = [['🍊', '橘子'], ['⭐', '星星'], ['🐥', '小鸡'], ['🍇', '葡萄'], ['🧩', '拼图块']];
       var it = mb_pick(items);
-      var a = mb_rnd(2, 7), n = mb_rnd(2, 5), b = a * n;
-      return { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[5] + '。' + it[4] + '是' + it[1] + '的（ ）倍。',
-        speak: it[1] + a + it[2] + '，' + it[4] + b + it[5] + '，' + it[4] + '是' + it[1] + '的几倍',
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
+      var title = '先圈一圈：' + b + ' 是 ' + a + ' 的几倍？';
+      return { stem: it[1] + '有 ' + b + ' 个，' + a + ' 个是 1 份。' + b + ' 是 ' + a + ' 的几倍？',
+        speak: it[1] + '有' + b + '个，' + a + '个是1份，' + b + '是' + a + '的几倍',
         options: null, answer: String(n), accept: [String(n)], misconceptions: {},
-        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, n: n, b: b, ask: 'bei' },
+        fig: { t: 'bei_circle', emoji: it[0], total: b, per: a, title: title } };
     } },
-  { id: 'math.u5.times_div.t5', kp_id: 'math.u5.times_div', type: 'choice', difficulty: 2, version: 1,
+  { id: 'math.u5.times_div.t2', kp_id: 'math.u5.times_div', type: 'word2', difficulty: 3, version: 2,
     gen: function () {
-      var items = [['🐰', '小兔', '只'], ['🍓', '草莓', '个'], ['🧸', '玩具熊', '只'], ['📖', '图书', '本']];
-      var it = mb_pick(items);
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), b = a * n;
-      var right = b + '是' + a + '的' + n + '倍';
-      var ch = mb_choice(right, [[b + '是' + a + '的' + (n + 1) + '倍', '倍数多算'],
-        [a + '是' + b + '的' + n + '倍', '两数说反了（一倍数和倍数弄反）'],
-        [b + '是' + n + '的' + a + '倍', '倍数和一倍数位置放反']], 4);
-      return { stem: it[0] + '小明有' + it[1] + ' ' + a + ' ' + it[2] + '，小红有' + it[1] + ' ' + b + ' ' + it[2] + '。下面哪句话说得对？',
-        speak: '小明有' + it[1] + a + it[2] + '，小红有' + it[1] + b + it[2] + '，下面哪句话说得对',
-        options: ch.options, answer: right, accept: [right], misconceptions: ch.misconceptions,
-        solution: '想：' + a + '×' + n + ' = ' + b + ' → ' + right, values: { a: a, b: b, n: n } };
-    } },
-  { id: 'math.u5.times_div.t6', kp_id: 'math.u5.times_div', type: 'word2', difficulty: 3, version: 1,
-    gen: function () {
-      var items = [['🐱', '小猫', '只', '🐶', '小狗'], ['🍎', '苹果', '个', '🍌', '香蕉'], ['🌷', '红花', '朵', '🌻', '黄花']];
-      var it = mb_pick(items);
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), b = a * n, sum = a + b;
-      var cands = [[n + 1, '倍数多算']];
-      if (n > 2) { cands.push([n - 1, '倍数少算']); } else { cands.push([n + 2, '倍数多算']); }
-      var ch = mb_choice(n, cands, 3);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n, diff = b - a;
+      var ch = mb_choice(n, [[diff, '把"多几"当成倍数'], [n + 1, '倍数多算']], 3);
       return {
-        step1: { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[2] + '。' + it[4] + '是' + it[1] + '的几倍？先选出来。',
-          speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，' + it[4] + '是' + it[1] + '的几倍，先选出来',
+        step1: { stem: '🍎 苹果 ' + b + ' 个，梨 ' + a + ' 个。苹果是梨的几倍？',
+          speak: '苹果' + b + '个，梨' + a + '个，苹果是梨的几倍',
           options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
           solution: '想：' + a + '×' + n + ' = ' + b },
-        step2: { stem: it[4] + '是' + it[1] + '的 ' + n + ' 倍。' + it[1] + '和' + it[4] + '一共有（ ）' + it[2] + '。',
-          speak: it[4] + '是' + it[1] + '的' + n + '倍，两种一共有几' + it[2],
-          options: null, answer: String(sum), accept: [String(sum)], misconceptions: {},
-          solution: a + '+' + b + ' = ' + sum },
-        values: { a: a, b: b, n: n } };
+        step2: { stem: '苹果比梨多（ ）个。',
+          speak: '苹果比梨多几个',
+          options: null, answer: String(diff), accept: [String(diff)], misconceptions: {},
+          solution: b + '−' + a + ' = ' + diff },
+        values: { a: a, n: n, b: b, diff: diff } };
     } },
-  { id: 'math.u5.times_div.t7', kp_id: 'math.u5.times_div', type: 'input', difficulty: 2, version: 1,
+  { id: 'math.u5.times_div.t3', kp_id: 'math.u5.times_div', type: 'input', difficulty: 2, version: 2,
     gen: function () {
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
-      return { stem: b + ' 是 ' + a + ' 的（ ）倍',
-        speak: b + '是' + a + '的几倍',
+      var n = mb_rnd(2, 6);
+      var title = '拼一拼：大线段是小线段的几倍？';
+      return { stem: '小线段是 1 份。大线段是小线段的几倍？',
+        speak: '小线段是1份，拼一拼，大线段是小线段的几倍',
         options: null, answer: String(n), accept: [String(n)], misconceptions: {},
-        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
+        solution: '拼了 ' + n + ' 段，所以是 ' + n + ' 倍', values: { n: n, ask: 'bei' },
+        fig: { t: 'bei_seg', n: n, title: title } };
+    } },
+  { id: 'math.u5.times_div.t4', kp_id: 'math.u5.times_div', type: 'word2', difficulty: 2, version: 2,
+    gen: function () {
+      var items = [['🐱', '小猫', '只', '🐶', '小狗'], ['🍓', '草莓', '个', '🍌', '香蕉'], ['🌷', '红花', '朵', '🌻', '黄花']];
+      var it = mb_pick(items);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), b = a * n;
+      var ch = mb_choice(it[1], [[it[4], '把大数当成 1 份']], 2);
+      return {
+        step1: { stem: it[0] + ' ' + it[1] + ' ' + a + ' ' + it[2] + '，' + it[4] + '是' + it[1] + '的 ' + n + ' 倍。谁是 1 份？',
+          speak: it[1] + a + it[2] + '，' + it[4] + '是' + it[1] + '的' + n + '倍，谁是1份',
+          options: ch.options, answer: it[1], accept: [it[1]], misconceptions: ch.misconceptions,
+          solution: it[1] + '是 1 份' },
+        step2: { stem: it[4] + '有几' + it[2] + '？',
+          speak: it[4] + '有几' + it[2],
+          options: null, answer: String(b), accept: [String(b)], misconceptions: {},
+          solution: a + '×' + n + ' = ' + b },
+        values: { a: a, n: n, b: b } };
+    } },
+  { id: 'math.u5.times_div.t5', kp_id: 'math.u5.times_div', type: 'input', difficulty: 3, version: 2,
+    gen: function () {
+      var items = [['🔵', '蓝珠子', '🔴', '红珠子', '颗'], ['🐥', '小鸡', '🐰', '小兔', '只'], ['🍏', '青苹果', '🍎', '红苹果', '个']];
+      var it = mb_pick(items);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
+      var title = it[2] + it[3] + '是' + it[1] + '的 ' + n + ' 倍，有几' + it[4] + '？';
+      return { stem: it[1] + ' ' + a + ' ' + it[4] + '，' + it[3] + '是' + it[1] + '的 ' + n + ' 倍。' + it[3] + '有几' + it[4] + '？',
+        speak: it[1] + a + it[4] + '，' + it[3] + '是' + it[1] + '的' + n + '倍，' + it[3] + '有几' + it[4],
+        options: null, answer: String(b), accept: [String(b)], misconceptions: {},
+        solution: a + '×' + n + ' = ' + b, values: { a: a, n: n, b: b },
+        fig: { t: 'bei_groups', emoji: it[0], per: a, groups: n, title: title } };
+    } },
+  { id: 'math.u5.times_div.t6', kp_id: 'math.u5.times_div', type: 'input', difficulty: 1, version: 2,
+    gen: function () {
+      var items = [['🍑', '桃子'], ['🍇', '葡萄'], ['⭐', '星星'], ['🍒', '樱桃']];
+      var it = mb_pick(items);
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
+      var title = '点一点：每 ' + a + ' 个圈一圈。一共圈了几圈？';
+      return { stem: it[1] + '有 ' + b + ' 个。每 ' + a + ' 个圈一圈，圈了几圈？',
+        speak: it[1] + '有' + b + '个，每' + a + '个圈一圈，圈了几圈',
+        options: null, answer: String(n), accept: [String(n)], misconceptions: {},
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, n: n, b: b, ask: 'quan' },
+        fig: { t: 'bei_circle', emoji: it[0], total: b, per: a, title: title } };
     } }
 ]
 ,

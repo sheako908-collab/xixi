@@ -424,3 +424,20 @@
 }
 .egg-text { font-size: 17px; color: #8D6E32; line-height: 1.6; margin: 12px 0 20px; }
 .egg-text b { color: #E0A93A; font-size: 22px; }
+
+/* 倍的认识互动图 */
+.bei-circle { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 360px; margin: 0 auto; }
+.bei-it { font-size: 34px; line-height: 1.15; width: 52px; height: 52px; border: 3px solid transparent; border-radius: 50%; background: #fff8e1; cursor: pointer; padding: 0; }
+.bei-it.circled { border-color: #F28B82; background: #ffe9e7; }
+.bei-count { width: 100%; text-align: center; font-size: 19px; font-weight: 700; color: #48463D; margin-top: 4px; }
+.bei-seg { max-width: 360px; margin: 0 auto; }
+.bei-lab { font-size: 16px; font-weight: 700; color: #8D6E32; margin: 6px 0 3px; }
+.bei-big { height: 26px; background: #F28B82; border-radius: 6px; }
+.bei-build { display: flex; height: 26px; min-width: 4px; }
+.bei-piece { height: 26px; background: #7FB3F5; border-radius: 4px; border: 1px solid #fff; box-sizing: border-box; }
+.bei-build.match .bei-piece { background: #66BB6A; }
+.bei-btns { display: flex; gap: 12px; justify-content: center; margin-top: 10px; }
+.bei-btns button { font-size: 19px; font-weight: 800; padding: 10px 18px; border-radius: 14px; border: 3px solid #E0A93A; background: #FFF3C4; color: #5b4306; cursor: pointer; min-height: 48px; }
+.bei-btns button:active { background: #FFC857; }
+.bei-groups { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 360px; margin: 0 auto; }
+.bei-grp { font-size: 26px; letter-spacing: 2px; border: 3px solid #E0A93A; border-radius: 12px; padding: 4px 8px; background: #fff8e1; }
