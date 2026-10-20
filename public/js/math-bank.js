@@ -619,7 +619,7 @@ window.MATH_BANK = {
     } },
   { id: 'math.u3.times.t7', kp_id: 'math.u3.times', type: 'input', difficulty: 1, version: 1,
     gen: function () {
-      var a = mb_rnd(2, 9), n = mb_rnd(2, 9), ans = a * n;
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), ans = a * n;
       return { stem: a + ' 的 ' + n + ' 倍是（ ）',
         speak: a + '的' + n + '倍是几',
         options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
@@ -629,7 +629,7 @@ window.MATH_BANK = {
     gen: function () {
       var items = [['🍎', '苹果', '个', '🍐', '梨'], ['✏️', '铅笔', '支', '📏', '尺子'], ['⭐', '星星贴纸', '张', '🌙', '月亮贴纸']];
       var it = mb_pick(items);
-      var a = mb_rnd(2, 9), n = mb_rnd(2, 5), b = a * n, diff = b - a;
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n, diff = b - a;
       var ch = mb_choice(n, [[diff, '把"多几"当成倍数'], [n + 1, '倍数多算'], [n - 1, '倍数少算']], 4);
       return {
         step1: { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[2] + '。' + it[4] + '是' + it[1] + '的几倍？',
@@ -648,7 +648,7 @@ window.MATH_BANK = {
                    ['🪑', '一排有 8 个座位', '排', '个座位', 8], ['🚗', '一辆车有 4 个轮子', '辆车', '个轮子', 4],
                    ['🐞', '一只瓢虫有 6 条腿', '只瓢虫', '条腿', 6]];
       var it = mb_pick(items);
-      var n = mb_rnd(2, 9), ans = it[4] * n;
+      var n = mb_rnd(2, Math.floor(36 / it[4])), ans = it[4] * n;
       return { stem: it[0] + ' ' + it[1] + '，' + n + ' ' + it[2] + '一共有（ ）' + it[3] + '。',
         speak: it[1] + '，' + n + it[2] + '一共有几' + it[3],
         options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
@@ -1168,7 +1168,7 @@ window.MATH_BANK = {
     } },
   { id: 'math.u5.times_div.t2', kp_id: 'math.u5.times_div', type: 'input', difficulty: 3, version: 1,
     gen: function () {
-      var a = mb_rnd(2, 9), n = mb_rnd(2, 5), ans = a * n;
+      var a = mb_rnd(2, 7), n = mb_rnd(2, 5), ans = a * n;
       return { stem: '🌷 红花 ' + a + ' 朵，黄花是红花的 ' + n + ' 倍。黄花有（ ）朵。',
         speak: '红花' + a + '朵，黄花是红花的' + n + '倍，黄花有几朵',
         options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
@@ -1188,7 +1188,7 @@ window.MATH_BANK = {
       var items = [['🐱', '小猫', '只', '🐶', '小狗', '只'], ['🐰', '小兔', '只', '🐥', '小鸡', '只'],
                    ['🍎', '苹果', '个', '🍐', '梨', '个'], ['✏️', '铅笔', '支', '📏', '尺子', '把']];
       var it = mb_pick(items);
-      var a = mb_rnd(2, 9), n = mb_rnd(2, 5), b = a * n;
+      var a = mb_rnd(2, 7), n = mb_rnd(2, 5), b = a * n;
       return { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[5] + '。' + it[4] + '是' + it[1] + '的（ ）倍。',
         speak: it[1] + a + it[2] + '，' + it[4] + b + it[5] + '，' + it[4] + '是' + it[1] + '的几倍',
         options: null, answer: String(n), accept: [String(n)], misconceptions: {},
@@ -1229,7 +1229,7 @@ window.MATH_BANK = {
     } },
   { id: 'math.u5.times_div.t7', kp_id: 'math.u5.times_div', type: 'input', difficulty: 2, version: 1,
     gen: function () {
-      var a = mb_rnd(2, 9), n = mb_rnd(2, 9), b = a * n;
+      var a = mb_rnd(2, 6), n = mb_rnd(2, 6), b = a * n;
       return { stem: b + ' 是 ' + a + ' 的（ ）倍',
         speak: b + '是' + a + '的几倍',
         options: null, answer: String(n), accept: [String(n)], misconceptions: {},
