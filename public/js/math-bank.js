@@ -583,7 +583,7 @@ window.MATH_BANK = {
       return { stem: '🔴 红花 ' + a + ' 朵，黄花 ' + b + ' 朵。黄花是红花的几倍？',
         speak: '红花' + a + '朵，黄花' + b + '朵，黄花是红花的几倍',
         options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
-        solution: b + '÷' + a + ' = ' + n, values: { a: a, b: b, n: n } };
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
     } },
   { id: 'math.u3.times.t4', kp_id: 'math.u3.times', type: 'choice', difficulty: 2, version: 1,
     gen: function () {
@@ -592,7 +592,7 @@ window.MATH_BANK = {
       return { stem: '🐶 小狗' + n + '只：' + mb_repeat('🐶', n) + '\n🐱 小猫' + m + '只：' + mb_repeat('🐱', m) + '\n小猫是小狗的几倍？',
         speak: '小狗' + n + '只，小猫' + m + '只，小猫是小狗的几倍',
         options: ch.options, answer: String(k), accept: [String(k)], misconceptions: ch.misconceptions,
-        solution: m + '÷' + n + ' = ' + k, values: { n: n, k: k, m: m } };
+        solution: '想：' + n + '×' + k + ' = ' + m, values: { n: n, k: k, m: m } };
     } },
   { id: 'math.u3.times.t5', kp_id: 'math.u3.times', type: 'input', difficulty: 2, version: 1,
     gen: function () {
@@ -635,7 +635,7 @@ window.MATH_BANK = {
         step1: { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[2] + '。' + it[4] + '是' + it[1] + '的几倍？',
           speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，' + it[4] + '是' + it[1] + '的几倍',
           options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
-          solution: b + '÷' + a + ' = ' + n },
+          solution: '想：' + a + '×' + n + ' = ' + b },
         step2: { stem: it[4] + '比' + it[1] + '多（ ）' + it[2] + '。',
           speak: it[4] + '比' + it[1] + '多几个',
           options: null, answer: String(diff), accept: [String(diff)], misconceptions: {},
@@ -1164,7 +1164,7 @@ window.MATH_BANK = {
       return { stem: '🐱 小猫 ' + a + ' 只，大猫 ' + b + ' 只。大猫是小猫的几倍？',
         speak: '小猫' + a + '只，大猫' + b + '只，大猫是小猫的几倍',
         options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
-        solution: b + '÷' + a + ' = ' + n, values: { a: a, b: b, n: n } };
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
     } },
   { id: 'math.u5.times_div.t2', kp_id: 'math.u5.times_div', type: 'input', difficulty: 3, version: 1,
     gen: function () {
@@ -1173,15 +1173,6 @@ window.MATH_BANK = {
         speak: '红花' + a + '朵，黄花是红花的' + n + '倍，黄花有几朵',
         options: null, answer: String(ans), accept: [String(ans)], misconceptions: {},
         solution: a + '×' + n + ' = ' + ans, values: { a: a, n: n } };
-    } },
-  { id: 'math.u5.times_div.t3', kp_id: 'math.u5.times_div', type: 'choice', difficulty: 3, version: 1,
-    gen: function () {
-      var a = mb_rnd(2, 6), n = mb_rnd(2, 4), b = a * n;
-      var ch = mb_choice(a, [[a + 1, '口算多算'], [b, '没除以倍数'], [a - 1 > 0 ? a - 1 : 1, '口算少算']], 4);
-      return { stem: '🍌 香蕉 ' + b + ' 根，是苹果的 ' + n + ' 倍。苹果有几根？',
-        speak: '香蕉' + b + '根，是苹果的' + n + '倍，苹果有几根',
-        options: ch.options, answer: String(a), accept: [String(a)], misconceptions: ch.misconceptions,
-        solution: b + '÷' + n + ' = ' + a, values: { a: a, b: b, n: n } };
     } },
   { id: 'math.u5.times_div.t4', kp_id: 'math.u5.times_div', type: 'input', difficulty: 2, version: 1,
     gen: function () {
@@ -1192,7 +1183,7 @@ window.MATH_BANK = {
       return { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[5] + '。' + it[4] + '是' + it[1] + '的（ ）倍。',
         speak: it[1] + a + it[2] + '，' + it[4] + b + it[5] + '，' + it[4] + '是' + it[1] + '的几倍',
         options: null, answer: String(n), accept: [String(n)], misconceptions: {},
-        solution: b + '÷' + a + ' = ' + n, values: { a: a, b: b, n: n } };
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
     } },
   { id: 'math.u5.times_div.t5', kp_id: 'math.u5.times_div', type: 'choice', difficulty: 2, version: 1,
     gen: function () {
@@ -1206,7 +1197,7 @@ window.MATH_BANK = {
       return { stem: it[0] + '小明有' + it[1] + ' ' + a + ' ' + it[2] + '，小红有' + it[1] + ' ' + b + ' ' + it[2] + '。下面哪句话说得对？',
         speak: '小明有' + it[1] + a + it[2] + '，小红有' + it[1] + b + it[2] + '，下面哪句话说得对',
         options: ch.options, answer: right, accept: [right], misconceptions: ch.misconceptions,
-        solution: b + '÷' + a + ' = ' + n + ' → ' + right, values: { a: a, b: b, n: n } };
+        solution: '想：' + a + '×' + n + ' = ' + b + ' → ' + right, values: { a: a, b: b, n: n } };
     } },
   { id: 'math.u5.times_div.t6', kp_id: 'math.u5.times_div', type: 'word2', difficulty: 3, version: 1,
     gen: function () {
@@ -1220,7 +1211,7 @@ window.MATH_BANK = {
         step1: { stem: it[0] + it[1] + ' ' + a + ' ' + it[2] + '，' + it[3] + it[4] + ' ' + b + ' ' + it[2] + '。' + it[4] + '是' + it[1] + '的几倍？先选出来。',
           speak: it[1] + a + it[2] + '，' + it[4] + b + it[2] + '，' + it[4] + '是' + it[1] + '的几倍，先选出来',
           options: ch.options, answer: String(n), accept: [String(n)], misconceptions: ch.misconceptions,
-          solution: b + '÷' + a + ' = ' + n },
+          solution: '想：' + a + '×' + n + ' = ' + b },
         step2: { stem: it[4] + '是' + it[1] + '的 ' + n + ' 倍。' + it[1] + '和' + it[4] + '一共有（ ）' + it[2] + '。',
           speak: it[4] + '是' + it[1] + '的' + n + '倍，两种一共有几' + it[2],
           options: null, answer: String(sum), accept: [String(sum)], misconceptions: {},
@@ -1233,7 +1224,7 @@ window.MATH_BANK = {
       return { stem: b + ' 是 ' + a + ' 的（ ）倍',
         speak: b + '是' + a + '的几倍',
         options: null, answer: String(n), accept: [String(n)], misconceptions: {},
-        solution: b + '÷' + a + ' = ' + n, values: { a: a, b: b, n: n } };
+        solution: '想：' + a + '×' + n + ' = ' + b, values: { a: a, b: b, n: n } };
     } }
 ]
 ,

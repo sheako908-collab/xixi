@@ -39,7 +39,7 @@ window.KP_MAP = {
       { id: 'math.u5.two_divisions', name: '两种分法',        pages: [58, 59], terms: ['平均分', '包含除'] },
       { id: 'math.u5.div_eq',        name: '除法算式',        pages: [62, 63], terms: ['被除数', '除号', '除数', '商', '读作除以'] },
       { id: 'math.u5.quotient',      name: '用口诀求商',      pages: [64, 65], terms: ['口诀求商', '乘除互逆'] },
-      { id: 'math.u5.times_div',     name: '倍的认识（除法）', pages: [67, 68], terms: ['倍'] }
+      { id: 'math.u5.times_div',     name: '倍的认识（巩固）', pages: [67, 68], terms: ['倍'] }
     ]},
     { id: 'u6', name: '图形的运动（一）', pages: [72, 76], kps: [
       { id: 'math.u6.symmetry',    name: '轴对称', pages: [72, 73], terms: ['对折', '完全重合'] },
