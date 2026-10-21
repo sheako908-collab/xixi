@@ -457,6 +457,56 @@ app.get('/api/export', function (req, res) {
   res.json(data);
 });
 
+/* ---------- svc：夜间调优专用只读接口（x-service-token 鉴权） ----------
+ * token 放在数据目录 service_token（600）；文件不存在则全部 403，不降级放行。 */
+var SVC_TOKEN = '';
+try { SVC_TOKEN = fs.readFileSync(path.join(db.DATA_DIR, 'service_token'), 'utf8').trim(); } catch (e) {}
+function svcAuth(req, res, next) {
+  if (!SVC_TOKEN || req.headers['x-service-token'] !== SVC_TOKEN) {
+    return res.status(403).json({ error: 'forbidden' });
+  }
+  next();
+}
+app.get('/api/svc/attempts', svcAuth, function (req, res) {
+  var c = db.getDefaultChild();
+  var f = { child_id: c.id };
+  if (req.query.date) { f.date = req.query.date; }
+  if (req.query.from) { f.dateFrom = req.query.from; }
+  if (req.query.to) { f.dateTo = req.query.to; }
+  if (req.query.subject) { f.subject = req.query.subject; }
+  if (req.query.correct === '0' || req.query.correct === '1') { f.correct = req.query.correct === '1'; }
+  res.json(db.queryAttempts(f));
+});
+app.get('/api/svc/mastery', svcAuth, function (req, res) {
+  var subject = req.query.subject || 'math';
+  if (subject !== 'math' && subject !== 'english') {
+    return res.status(400).json({ error: 'subject 须为 math|english' });
+  }
+  var c = db.getDefaultChild();
+  res.json(db.masteryFor(c.id, subject, normalizeKps(subject), req.query.date || db.todayLocal()));
+});
+app.get('/api/svc/plan', svcAuth, function (req, res) {
+  var subject = req.query.subject || 'math';
+  if (subject !== 'math' && subject !== 'english') {
+    return res.status(400).json({ error: 'subject 须为 math|english' });
+  }
+  var c = db.getDefaultChild();
+  res.json(db.getPlan(c.id, subject, req.query.date || db.todayLocal()));
+});
+app.get('/api/svc/clientlog', svcAuth, function (req, res) {
+  var date = req.query.date || db.todayLocal();
+  var fp = path.join(ERR_LOG_DIR, 'client-errors-' + date + '.log');
+  fs.readFile(fp, 'utf8', function (err, txt) {
+    if (err) { return res.json([]); }
+    var out = [];
+    txt.split('\n').forEach(function (l) {
+      if (!l) { return; }
+      try { out.push(JSON.parse(l)); } catch (e) {}
+    });
+    res.json(out);
+  });
+});
+
 /* ---------- 静态托管 ---------- */
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
